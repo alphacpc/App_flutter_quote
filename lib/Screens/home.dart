@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:getwidget/components/avatar/gf_avatar.dart';
+import 'package:getwidget/components/list_tile/gf_list_tile.dart';
+import 'package:getwidget/shape/gf_avatar_shape.dart';
 import 'package:task_management_flutter/Models/Quote.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,7 +22,7 @@ class HomePage extends StatelessWidget {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
     Quote("Aliko", "Dangote",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
-    Quote(" Ndiaga Ndiaye", "Ndiaye",
+    Quote("Ndiaga Ndiaye", "Ndiaye",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
     Quote("Mouammar", "Kadhafi",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
@@ -114,5 +118,111 @@ class HomePage extends StatelessWidget {
             )
           ],
         ));
+  }
+
+  // AVATAR
+  GFAvatar _chooseAvatar(String character) {
+    switch (character) {
+      case "anta":
+        return GFAvatar(
+          backgroundImage: new AssetImage("assets/anta.jpg"),
+          shape: GFAvatarShape.circle,
+        );
+      case "aliko":
+        return GFAvatar(
+          backgroundImage: new AssetImage("assets/aliko.jpg"),
+          shape: GFAvatarShape.circle,
+        );
+      case "kadhafi":
+        return GFAvatar(
+          backgroundImage: new AssetImage("assets/kadhafi.jpg"),
+          shape: GFAvatarShape.circle,
+        );
+      case "thomas":
+        return GFAvatar(
+          backgroundImage: new AssetImage("assets/thomas.jpg"),
+          shape: GFAvatarShape.circle,
+        );
+      case "krumah":
+        return GFAvatar(
+          backgroundImage: new AssetImage("assets/krumah.jpg"),
+          shape: GFAvatarShape.circle,
+        );
+      case "matti":
+        return GFAvatar(
+          backgroundImage: new AssetImage("assets/matti.jpg"),
+          shape: GFAvatarShape.circle,
+        );
+      case "patrice":
+        return GFAvatar(
+          backgroundImage: new AssetImage("assets/photo.jpg"),
+          shape: GFAvatarShape.circle,
+        );
+      Default:
+        return GFAvatar(
+          backgroundImage: new AssetImage("assets/photo.jpg"),
+          shape: GFAvatarShape.circle,
+        );
+    }
+  }
+
+  // WIDGET SLIDABLE
+  Widget _buildWidgetSlidable(Quote quote) {
+    return Slidable(
+      key: const ValueKey(0),
+      startActionPane: ActionPane(
+        motion: const ScrollMotion(),
+
+        dismissible: DismissiblePane(onDismissed: () {}),
+
+        children: const [
+            SlidableAction(
+              onPressed:  ,
+              backgroundColor: Color(0xFFFE4A49),
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: 'Delete',
+            ),
+            SlidableAction(
+              onPressed: ,
+              backgroundColor: Color(0xFF21B7CA),
+              foregroundColor: Colors.white,
+              icon: Icons.share,
+              label: 'Share',
+            ),
+        ]
+      ),
+
+      // A SlidableAction can have an icon and/or a label.
+      endActionPane: const ActionPane(
+        motion: ScrollMotion(),
+          children: [
+            SlidableAction(
+        // An action can be bigger than the others.
+              flex: 2,
+              onPressed: doNothing,
+              backgroundColor: Color(0xFF7BC043),
+              foregroundColor: Colors.white,
+              icon: Icons.archive,
+              label: 'Archive',
+            ),
+            SlidableAction(
+              onPressed: doNothing,
+              backgroundColor: Color(0xFF0392CF),
+              foregroundColor: Colors.white,
+              icon: Icons.save,
+              label: 'Save',
+            ),
+          ],
+      ),
+
+      child: GFListTile(
+        avatar: this._chooseAvatar(quote.userFname),
+        titleText: quote.userFname,
+        subTitleText: quote.userMessage,
+        icon: Icon(Icons.favorite_border_outlined),
+      ),
+       
+    );
   }
 }
