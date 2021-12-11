@@ -30,26 +30,89 @@ class HomePage extends StatelessWidget {
     double fullHeight = MediaQuery.of(context).size.height - 80;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(this.title),
-      ),
-      body: Container(
-          child: Column(
-        children: [
-          Container(
-            height: fullHeight,
-            width: fullWidth,
-            child: ListView.builder(
-                itemCount: quotes.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(quotes[index].userFname),
-                    subtitle: Text(quotes[index].userMessage),
-                  );
-                }),
-          )
-        ],
-      )),
-    );
+        drawer: Drawer(
+            child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+                decoration: BoxDecoration(color: Colors.deepOrange),
+                child: Text('Drawer Header')),
+            ListTile(
+              title: const Text("Item 1"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text("Item 2"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text("Item 3"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        )),
+        // appBar: AppBar(
+        //   title: Text(this.title),
+        // ),
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              expandedHeight: fullHeight * 0.4,
+              floating: false,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
+                title: Text("andoo"),
+                background: Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          colorFilter: new ColorFilter.mode(
+                              Colors.deepOrange.withOpacity(0.5),
+                              BlendMode.dstATop),
+                          image: AssetImage("header.jpg"),
+                          fit: BoxFit.cover)),
+                ),
+              ),
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 20, 0, 0),
+                  child: Text(
+                    'Mes citations',
+                    style: TextStyle(
+                        fontFamily: 'Cabin',
+                        fontSize: 45,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                    child: Column(
+                  children: [
+                    Container(
+                      height: fullHeight,
+                      width: fullWidth,
+                      child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: quotes.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(quotes[index].userFname),
+                              subtitle: Text(quotes[index].userMessage),
+                            );
+                          }),
+                    )
+                  ],
+                )),
+              ]),
+            )
+          ],
+        ));
   }
 }
