@@ -200,7 +200,7 @@ class HomePage extends StatelessWidget {
             SlidableAction(
         // An action can be bigger than the others.
               flex: 2,
-              onPressed: doNothing,
+              onPressed: () => { print("Hello word")},
               backgroundColor: Color(0xFF7BC043),
               foregroundColor: Colors.white,
               icon: Icons.archive,
