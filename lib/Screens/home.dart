@@ -125,13 +125,6 @@ class HomePage extends StatelessWidget {
                                     icon: Icons.delete,
                                     label: 'delete',
                                   ),
-                                  SlidableAction(
-                                    onPressed: doNothing,
-                                    backgroundColor: Color(0xFF21B7CA),
-                                    foregroundColor: Colors.white,
-                                    icon: Icons.share,
-                                    label: 'Share',
-                                  ),
                                 ],
                               ),
                               endActionPane: const ActionPane(
