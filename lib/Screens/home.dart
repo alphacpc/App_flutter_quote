@@ -106,9 +106,55 @@ class HomePage extends StatelessWidget {
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: quotes.length,
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(quotes[index].userFname),
-                              subtitle: Text(quotes[index].userMessage),
+                            // return ListTile( /***Initial State */
+                            //   title: Text(quotes[index].userFname),
+                            //   subtitle: Text(quotes[index].userMessage),
+                            // );
+                            // return buildListTitle(quotes[index]);
+                            return Slidable(
+                              child: buildListTitle(quotes[index]),
+                              startActionPane: ActionPane(
+                                motion: const ScrollMotion(),
+                                dismissible:
+                                    DismissiblePane(onDismissed: () {}),
+                                children: const [
+                                  SlidableAction(
+                                    onPressed: doNothing,
+                                    backgroundColor: Color(0xFFFE4A49),
+                                    foregroundColor: Colors.white,
+                                    icon: Icons.delete,
+                                    label: 'delete',
+                                  ),
+                                  SlidableAction(
+                                    onPressed: doNothing,
+                                    backgroundColor: Color(0xFF21B7CA),
+                                    foregroundColor: Colors.white,
+                                    icon: Icons.share,
+                                    label: 'Share',
+                                  ),
+                                ],
+                              ),
+                              endActionPane: const ActionPane(
+                                motion: ScrollMotion(),
+                                children: [
+                                  SlidableAction(
+                                    // An action can be bigger than the others.
+                                    flex: 2,
+                                    onPressed: doNothing,
+                                    backgroundColor: Color(0xFF7BC043),
+                                    foregroundColor: Colors.white,
+                                    icon: Icons.archive,
+                                    label: 'Archive',
+                                  ),
+                                  SlidableAction(
+                                    onPressed: doNothing,
+                                    backgroundColor: Color(0xFF0392CF),
+                                    foregroundColor: Colors.white,
+                                    icon: Icons.save,
+                                    label: 'Save',
+                                  ),
+                                ],
+                              ),
                             );
                           }),
                     )
@@ -120,109 +166,135 @@ class HomePage extends StatelessWidget {
         ));
   }
 
+  Widget buildListTitle(Quote item) => ListTile(
+        contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        leading: CircleAvatar(
+          radius: 28,
+          backgroundImage: new AssetImage('assets/photo.jpg'),
+        ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              item.userFname,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Text(item.userMessage)
+          ],
+        ),
+        onTap: () {},
+      );
+}
+
+void doNothing(BuildContext context) {
+  print('Hello word');
+}
+
+
   // AVATAR
-  GFAvatar _chooseAvatar(String character) {
-    switch (character) {
-      case "anta":
-        return GFAvatar(
-          backgroundImage: new AssetImage("assets/anta.jpg"),
-          shape: GFAvatarShape.circle,
-        );
-      case "aliko":
-        return GFAvatar(
-          backgroundImage: new AssetImage("assets/aliko.jpg"),
-          shape: GFAvatarShape.circle,
-        );
-      case "kadhafi":
-        return GFAvatar(
-          backgroundImage: new AssetImage("assets/kadhafi.jpg"),
-          shape: GFAvatarShape.circle,
-        );
-      case "thomas":
-        return GFAvatar(
-          backgroundImage: new AssetImage("assets/thomas.jpg"),
-          shape: GFAvatarShape.circle,
-        );
-      case "krumah":
-        return GFAvatar(
-          backgroundImage: new AssetImage("assets/krumah.jpg"),
-          shape: GFAvatarShape.circle,
-        );
-      case "matti":
-        return GFAvatar(
-          backgroundImage: new AssetImage("assets/matti.jpg"),
-          shape: GFAvatarShape.circle,
-        );
-      case "patrice":
-        return GFAvatar(
-          backgroundImage: new AssetImage("assets/photo.jpg"),
-          shape: GFAvatarShape.circle,
-        );
-      Default:
-        return GFAvatar(
-          backgroundImage: new AssetImage("assets/photo.jpg"),
-          shape: GFAvatarShape.circle,
-        );
-    }
-  }
+  // GFAvatar _chooseAvatar(String character) {
+  //   switch (character) {
+  //     case "anta":
+  //       return GFAvatar(
+  //         backgroundImage: new AssetImage("assets/anta.jpg"),
+  //         shape: GFAvatarShape.circle,
+  //       );
+  //     case "aliko":
+  //       return GFAvatar(
+  //         backgroundImage: new AssetImage("assets/aliko.jpg"),
+  //         shape: GFAvatarShape.circle,
+  //       );
+  //     case "kadhafi":
+  //       return GFAvatar(
+  //         backgroundImage: new AssetImage("assets/kadhafi.jpg"),
+  //         shape: GFAvatarShape.circle,
+  //       );
+  //     case "thomas":
+  //       return GFAvatar(
+  //         backgroundImage: new AssetImage("assets/thomas.jpg"),
+  //         shape: GFAvatarShape.circle,
+  //       );
+  //     case "krumah":
+  //       return GFAvatar(
+  //         backgroundImage: new AssetImage("assets/krumah.jpg"),
+  //         shape: GFAvatarShape.circle,
+  //       );
+  //     case "matti":
+  //       return GFAvatar(
+  //         backgroundImage: new AssetImage("assets/matti.jpg"),
+  //         shape: GFAvatarShape.circle,
+  //       );
+  //     case "patrice":
+  //       return GFAvatar(
+  //         backgroundImage: new AssetImage("assets/photo.jpg"),
+  //         shape: GFAvatarShape.circle,
+  //       );
+  //     Default:
+  //       return GFAvatar(
+  //         backgroundImage: new AssetImage("assets/photo.jpg"),
+  //         shape: GFAvatarShape.circle,
+  //       );
+  //   }
+  // }
 
   // WIDGET SLIDABLE
-  Widget _buildWidgetSlidable(Quote quote) {
-    return Slidable(
-      key: const ValueKey(0),
-      startActionPane: ActionPane(
-        motion: const ScrollMotion(),
+//   Widget _buildWidgetSlidable(Quote quote) {
+//     return Slidable(
+//       key: const ValueKey(0),
+//       startActionPane: ActionPane(
+//         motion: const ScrollMotion(),
 
-        dismissible: DismissiblePane(onDismissed: () {}),
+//         dismissible: DismissiblePane(onDismissed: () {}),
 
-        children: const [
-            SlidableAction(
-              onPressed:  ,
-              backgroundColor: Color(0xFFFE4A49),
-              foregroundColor: Colors.white,
-              icon: Icons.delete,
-              label: 'Delete',
-            ),
-            SlidableAction(
-              onPressed: ,
-              backgroundColor: Color(0xFF21B7CA),
-              foregroundColor: Colors.white,
-              icon: Icons.share,
-              label: 'Share',
-            ),
-        ]
-      ),
+//         children: const [
+//             SlidableAction(
+//               onPressed:  ,
+//               backgroundColor: Color(0xFFFE4A49),
+//               foregroundColor: Colors.white,
+//               icon: Icons.delete,
+//               label: 'Delete',
+//             ),
+//             SlidableAction(
+//               onPressed: ,
+//               backgroundColor: Color(0xFF21B7CA),
+//               foregroundColor: Colors.white,
+//               icon: Icons.share,
+//               label: 'Share',
+//             ),
+//         ]
+//       ),
 
-      // A SlidableAction can have an icon and/or a label.
-      endActionPane: const ActionPane(
-        motion: ScrollMotion(),
-          children: [
-            SlidableAction(
-        // An action can be bigger than the others.
-              flex: 2,
-              onPressed: () => { print("Hello word")},
-              backgroundColor: Color(0xFF7BC043),
-              foregroundColor: Colors.white,
-              icon: Icons.archive,
-              label: 'Archive',
-            ),
-            SlidableAction(
-              onPressed: doNothing,
-              backgroundColor: Color(0xFF0392CF),
-              foregroundColor: Colors.white,
-              icon: Icons.save,
-              label: 'Save',
-            ),
-          ],
-      ),
+//       // A SlidableAction can have an icon and/or a label.
+//       endActionPane: const ActionPane(
+//         motion: ScrollMotion(),
+//           children: [
+//             SlidableAction(
+//         // An action can be bigger than the others.
+//               flex: 2,
+//               onTap: (){},
+//               backgroundColor: Color(0xFF7BC043),
+//               foregroundColor: Colors.white,
+//               icon: Icons.archive,
+//               label: 'Archive',
+//             ),
+//             SlidableAction(
+//               onPressed: doNothing,
+//               backgroundColor: Color(0xFF0392CF),
+//               foregroundColor: Colors.white,
+//               icon: Icons.save,
+//               label: 'Save',
+//             ),
+//           ],
+//       ),
 
-      child: GFListTile(
-        avatar: this._chooseAvatar(quote.userFname),
-        titleText: quote.userFname,
-        subTitleText: quote.userMessage,
-        icon: Icon(Icons.favorite_border_outlined),
-      ),
+//       child: GFListTile(
+//         avatar: this._chooseAvatar(quote.userFname),
+//         titleText: quote.userFname,
+//         subTitleText: quote.userMessage,
+//         icon: Icon(Icons.favorite_border_outlined),
+//       ),
        
-    );
-  }
-}
+//     );
+//   }
+// }
