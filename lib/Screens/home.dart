@@ -10,22 +10,46 @@ class HomePage extends StatelessWidget {
   final String title;
 
   List<Quote> quotes = [
-    Quote("Cheikh Anta", "DOP",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
-    Quote("Thomas", "Sankara",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
-    Quote("Kwame", "Nkrumah",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
-    Quote("Patrice Émery", "Lumumba",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
-    Quote("Wangari Maathai", "Maathai",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
-    Quote("Aliko", "Dangote",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
-    Quote("Ndiaga Ndiaye", "Ndiaye",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
-    Quote("Mouammar", "Kadhafi",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
+    Quote(
+        "Cheikh Anta",
+        "DOP",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        "assets/anta.jpg"),
+    Quote(
+        "Thomas",
+        "Sankara",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        "assets/thomas.jpeg"),
+    Quote(
+        "Kwame",
+        "Nkrumah",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        "assets/knkrumah.jpg"),
+    Quote(
+        "Patrice Émery",
+        "Lumumba",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        "assets/patrice.jpeg"),
+    Quote(
+        "Wangari Maathai",
+        "Maathai",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        "assets/matti.jpg"),
+    Quote(
+        "Aliko",
+        "Dangote",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        "assets/aliko.jpg"),
+    Quote(
+        "Rose",
+        "Dieng-Kuntz",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        "assets/rose.jpeg"),
+    Quote(
+        "Mouammar",
+        "Kadhafi",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        "assets/kadhafi.jpg"),
   ];
 
   @override
@@ -154,7 +178,7 @@ class HomePage extends StatelessWidget {
         contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         leading: CircleAvatar(
           radius: 28,
-          backgroundImage: new AssetImage('assets/photo.jpg'),
+          backgroundImage: new AssetImage(item.userPicture),
         ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,6 +200,5 @@ void doNothing(BuildContext context) {
 }
 
 void showMore(BuildContext context) {
-  Navigator.pushNamed(context, "Detail");
-  print('clicked');
+  Navigator.pushNamed(context, "/Detail");
 }

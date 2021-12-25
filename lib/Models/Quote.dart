@@ -8,5 +8,5 @@ class Quote {
   String userMessage = '';
   bool isFavorite = false;
 
-  Quote(this.userFname, this.userLname, this.userMessage);
+  Quote(this.userFname, this.userLname, this.userMessage, this.userPicture);
 }

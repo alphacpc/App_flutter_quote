@@ -50,6 +50,15 @@ flutter:
   assets:
     - assets/photo.jpg
     - assets/header.jpg
+    - assets/anta.jpg
+    - assets/kadhafi.jpg
+    - assets/aliko.jpg
+    - assets/knkrumah.jpg
+    - assets/matti.jpg
+    - assets/thomas.jpeg
+    - assets/rose.jpeg
+    - assets/patrice.jpeg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

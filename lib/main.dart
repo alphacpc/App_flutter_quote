@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_management_flutter/Screens/Detail.dart';
 import 'package:task_management_flutter/Screens/home.dart';
 
 void main() {
@@ -15,9 +16,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
-      home: HomePage(
-        title: "Home page",
-      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomePage(title: 'Home Page'),
+        '/Detail': (context) => Detail()
+      },
+      // home: HomePage(
+      //   title: "Home page",
+      // ),
     );
   }
 }
