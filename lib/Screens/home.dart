@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                           colorFilter: new ColorFilter.mode(
                               Colors.deepOrange.withOpacity(0.5),
                               BlendMode.dstATop),
-                          image: AssetImage("header.jpg"),
+                          image: new AssetImage("assets/header.jpg"),
                           fit: BoxFit.cover)),
                 ),
               ),
@@ -91,9 +91,10 @@ class HomePage extends StatelessWidget {
                   child: Text(
                     'Mes citations',
                     style: TextStyle(
-                        fontFamily: 'Cabin',
-                        fontSize: 45,
-                        fontWeight: FontWeight.bold),
+                      fontFamily: 'Cabin',
+                      fontSize: 45,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 Container(
@@ -106,12 +107,8 @@ class HomePage extends StatelessWidget {
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: quotes.length,
                           itemBuilder: (context, index) {
-                            // return ListTile( /***Initial State */
-                            //   title: Text(quotes[index].userFname),
-                            //   subtitle: Text(quotes[index].userMessage),
-                            // );
-                            // return buildListTitle(quotes[index]);
                             return Slidable(
+                              key: ValueKey(4),
                               child: buildListTitle(quotes[index]),
                               startActionPane: ActionPane(
                                 motion: const ScrollMotion(),
@@ -120,10 +117,9 @@ class HomePage extends StatelessWidget {
                                 children: const [
                                   SlidableAction(
                                     onPressed: doNothing,
-                                    backgroundColor: Color(0xFFFE4A49),
+                                    backgroundColor: Color(0xFFD50000),
                                     foregroundColor: Colors.white,
                                     icon: Icons.delete,
-                                    label: 'delete',
                                   ),
                                 ],
                               ),
@@ -131,21 +127,16 @@ class HomePage extends StatelessWidget {
                                 motion: ScrollMotion(),
                                 children: [
                                   SlidableAction(
-                                    // An action can be bigger than the others.
-                                    flex: 2,
-                                    onPressed: doNothing,
-                                    backgroundColor: Color(0xFF7BC043),
-                                    foregroundColor: Colors.white,
-                                    icon: Icons.archive,
-                                    label: 'Archive',
-                                  ),
+                                      onPressed: doNothing,
+                                      backgroundColor: Color(0xFFEEEEEE),
+                                      foregroundColor: Colors.white,
+                                      icon: Icons.favorite_outline_outlined),
                                   SlidableAction(
-                                    onPressed: doNothing,
-                                    backgroundColor: Color(0xFF0392CF),
-                                    foregroundColor: Colors.white,
-                                    icon: Icons.save,
-                                    label: 'Save',
-                                  ),
+                                      onPressed: showMore,
+                                      backgroundColor: Color(0xFF1976D2),
+                                      foregroundColor: Colors.white,
+                                      label: 'Voir plus',
+                                      icon: Icons.arrow_forward_ios_outlined),
                                 ],
                               ),
                             );
@@ -160,7 +151,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget buildListTitle(Quote item) => ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         leading: CircleAvatar(
           radius: 28,
           backgroundImage: new AssetImage('assets/photo.jpg'),
@@ -172,8 +163,8 @@ class HomePage extends StatelessWidget {
               item.userFname,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 10),
-            Text(item.userMessage)
+            const SizedBox(height: 5),
+            Text(item.userMessage),
           ],
         ),
         onTap: () {},
@@ -184,110 +175,7 @@ void doNothing(BuildContext context) {
   print('Hello word');
 }
 
-
-  // AVATAR
-  // GFAvatar _chooseAvatar(String character) {
-  //   switch (character) {
-  //     case "anta":
-  //       return GFAvatar(
-  //         backgroundImage: new AssetImage("assets/anta.jpg"),
-  //         shape: GFAvatarShape.circle,
-  //       );
-  //     case "aliko":
-  //       return GFAvatar(
-  //         backgroundImage: new AssetImage("assets/aliko.jpg"),
-  //         shape: GFAvatarShape.circle,
-  //       );
-  //     case "kadhafi":
-  //       return GFAvatar(
-  //         backgroundImage: new AssetImage("assets/kadhafi.jpg"),
-  //         shape: GFAvatarShape.circle,
-  //       );
-  //     case "thomas":
-  //       return GFAvatar(
-  //         backgroundImage: new AssetImage("assets/thomas.jpg"),
-  //         shape: GFAvatarShape.circle,
-  //       );
-  //     case "krumah":
-  //       return GFAvatar(
-  //         backgroundImage: new AssetImage("assets/krumah.jpg"),
-  //         shape: GFAvatarShape.circle,
-  //       );
-  //     case "matti":
-  //       return GFAvatar(
-  //         backgroundImage: new AssetImage("assets/matti.jpg"),
-  //         shape: GFAvatarShape.circle,
-  //       );
-  //     case "patrice":
-  //       return GFAvatar(
-  //         backgroundImage: new AssetImage("assets/photo.jpg"),
-  //         shape: GFAvatarShape.circle,
-  //       );
-  //     Default:
-  //       return GFAvatar(
-  //         backgroundImage: new AssetImage("assets/photo.jpg"),
-  //         shape: GFAvatarShape.circle,
-  //       );
-  //   }
-  // }
-
-  // WIDGET SLIDABLE
-//   Widget _buildWidgetSlidable(Quote quote) {
-//     return Slidable(
-//       key: const ValueKey(0),
-//       startActionPane: ActionPane(
-//         motion: const ScrollMotion(),
-
-//         dismissible: DismissiblePane(onDismissed: () {}),
-
-//         children: const [
-//             SlidableAction(
-//               onPressed:  ,
-//               backgroundColor: Color(0xFFFE4A49),
-//               foregroundColor: Colors.white,
-//               icon: Icons.delete,
-//               label: 'Delete',
-//             ),
-//             SlidableAction(
-//               onPressed: ,
-//               backgroundColor: Color(0xFF21B7CA),
-//               foregroundColor: Colors.white,
-//               icon: Icons.share,
-//               label: 'Share',
-//             ),
-//         ]
-//       ),
-
-//       // A SlidableAction can have an icon and/or a label.
-//       endActionPane: const ActionPane(
-//         motion: ScrollMotion(),
-//           children: [
-//             SlidableAction(
-//         // An action can be bigger than the others.
-//               flex: 2,
-//               onTap: (){},
-//               backgroundColor: Color(0xFF7BC043),
-//               foregroundColor: Colors.white,
-//               icon: Icons.archive,
-//               label: 'Archive',
-//             ),
-//             SlidableAction(
-//               onPressed: doNothing,
-//               backgroundColor: Color(0xFF0392CF),
-//               foregroundColor: Colors.white,
-//               icon: Icons.save,
-//               label: 'Save',
-//             ),
-//           ],
-//       ),
-
-//       child: GFListTile(
-//         avatar: this._chooseAvatar(quote.userFname),
-//         titleText: quote.userFname,
-//         subTitleText: quote.userMessage,
-//         icon: Icon(Icons.favorite_border_outlined),
-//       ),
-       
-//     );
-//   }
-// }
+void showMore(BuildContext context) {
+  Navigator.pushNamed(context, "Detail");
+  print('clicked');
+}
