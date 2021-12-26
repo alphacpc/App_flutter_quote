@@ -58,33 +58,35 @@ class HomePage extends StatelessWidget {
     double fullHeight = MediaQuery.of(context).size.height - 80;
 
     return Scaffold(
-        drawer: Drawer(
-            child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-                decoration: BoxDecoration(color: Colors.deepOrange),
-                child: Text('Drawer Header')),
-            ListTile(
-              title: const Text("Item 1"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text("Item 2"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text("Item 3"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        )),
+        drawer: Container(
+            width: fullWidth / 2,
+            child: Drawer(
+                child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                const DrawerHeader(
+                    decoration: BoxDecoration(color: Colors.deepOrange),
+                    child: Text('Drawer Header')),
+                ListTile(
+                  title: const Text("Item 1"),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: const Text("Item 2"),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: const Text("Item 3"),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ))),
         // appBar: AppBar(
         //   title: Text(this.title),
         // ),
@@ -103,7 +105,7 @@ class HomePage extends StatelessWidget {
                           colorFilter: new ColorFilter.mode(
                               Colors.deepOrange.withOpacity(0.5),
                               BlendMode.dstATop),
-                          image: new AssetImage("assets/header.jpg"),
+                          image: new AssetImage("assets/africa1.jpg"),
                           fit: BoxFit.cover)),
                 ),
               ),
