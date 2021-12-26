@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task_management_flutter/Screens/Detail.dart';
-import 'package:task_management_flutter/Screens/home.dart';
+import 'package:andoo/Screens/Detail.dart';
+import 'package:andoo/Screens/home.dart';
 
 void main() {
   runApp(MyApp());
