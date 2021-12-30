@@ -202,5 +202,5 @@ void doNothing(BuildContext context) {
 }
 
 void showMore(BuildContext context) {
-  Navigator.pushNamed(context, "/Detail");
+  Navigator.pushNamed(context, "/Detail",arguments: "ceci est un test");
 }
